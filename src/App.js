@@ -48,46 +48,23 @@ function App() {
   const displayRules = () => {
     alert("Guess the WORDLE in six tries.\nEach guess must be a valid five-letter word.\nHit the enter button to submit.\nAfter each guess, the color of the tiles will change to show how close your guess was to the word.");
   }
-
-  if(darkMode){
-    return (
-      <div className="DarkApp" id="App">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-        <center>
-          <AppContext.Provider value={{ board, setBoard, currentAttempt, setCurrentAttempt, wordSet, setWordSet, correctWord, setCorrectWord, gameOver, setGameOver, disabledChars, setDisabledChars, correctChars, setCorrectChars, darkMode, setDarkMode }}>
-          <nav style={{display:"flex", justifyContent:"space-between"}}>
-              <a onClick={displayRules}><i class="fa fa-question-circle questionmark"  style={{fontSize:"24px"}}></i></a>      
-              <h1>Wordle</h1>
-              <Toggle/>
-            </nav>
-            <Board/>
-            <div id="gameovermsg"></div>
-            <KeyBoard/>
-          </AppContext.Provider>
-        </center>
-      </div>
-    );
-  }
-  else{
-    return (
-      <div className="LightApp" id="App">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-        <center>
+  return (
+    <div className={darkMode ? "DarkApp" : "LightMode" } id="App">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+      <center>
         <AppContext.Provider value={{ board, setBoard, currentAttempt, setCurrentAttempt, wordSet, setWordSet, correctWord, setCorrectWord, gameOver, setGameOver, disabledChars, setDisabledChars, correctChars, setCorrectChars, darkMode, setDarkMode }}>
-            <nav style={{display:"flex", justifyContent:"space-between"}}>
-              <a onClick={displayRules}><i class="fa fa-question-circle questionmark"  style={{fontSize:"24px"}}></i></a>      
-              <h1>Wordle</h1>
-              <Toggle/>
-            </nav>
-
-            <Board/>
-            <div id="gameovermsg"></div>
-            <KeyBoard/>
-          </AppContext.Provider>
-        </center>
-      </div>
-    );
-  }
+        <nav style={{display:"flex", justifyContent:"space-between"}}>
+            <a onClick={displayRules}><i class="fa fa-question-circle questionmark"  style={{fontSize:"24px"}}></i></a>      
+            <h1>Wordle</h1>
+            <Toggle/>
+          </nav>
+          <Board/>
+          <div id="gameovermsg"></div>
+          <KeyBoard/>
+        </AppContext.Provider>
+      </center>
+    </div>
+  );
 
 }
 
